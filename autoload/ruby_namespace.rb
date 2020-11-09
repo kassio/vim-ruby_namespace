@@ -64,7 +64,7 @@ class TokenProcessor
       if token == '<<'
         @next_push_name += ' <<'
       else
-        @name_stack.push("#{@next_push_name} #{token}")
+        @name_stack.push(token)
         @next_push_name = nil
         @prev_push_name = true
       end
@@ -116,5 +116,5 @@ name_stack = TokenProcessor.new(line.to_i).process(tokens)
 if name_stack.empty?
   puts 'TOPLEVEL'
 else
-  puts name_stack.join('; ')
+  puts name_stack.join('::')
 end
